@@ -30,8 +30,11 @@ def read_xls(file_path):
     for i in range(0, work_sheet.nrows):
         row = work_sheet.row(i)
         stock_id = str(row[0]).replace("text:", "").replace('\'', "")
-        stock_concepts = str(row[2]).replace("text:", "").replace('\'', "").replace(";", " ")
-        format_str = change_format(stock_id, stock_concepts)
+        stock_industry = str(row[2]).replace("text:", "").replace('\'', "")
+        print(stock_industry)
+        stock_concepts = str(row[3]).replace("text:", "").replace('\'', "").replace(";", " ")
+        stock_new_concepts = "{" + stock_industry + "}" + ":" + stock_concepts
+        format_str = change_format(stock_id, stock_new_concepts)
         print(format_str)
         if format_str:
             write_data(format_str)
